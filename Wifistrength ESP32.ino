@@ -1,12 +1,13 @@
 #include <WiFi.h>
 #include <M5StickCPlus.h>
+#include "secret.h"
 
 #define buttonPin 37 
 #define LEDPin 10
 
 // Network information
-char* ssid = "tksteti";
-const char* passw = "ProsimTeNevim";
+char* ssid = skola;
+const char* passw = "hesloskola";  //LF: 192.168.0.98
 
 // ThingSpeak settings
 char server[] = "api.thingspeak.com";
@@ -21,6 +22,7 @@ int measurementNumber = 0;
 
 void setup(){
   
+    M5.begin();
     Serial.begin(115200);
     pinMode(buttonPin,INPUT);
     pinMode(LEDPin, OUTPUT);
@@ -59,7 +61,7 @@ void connectWiFi(){
     }
 
     // Display a notification that the connection is successful. 
-    Serial.println("Connected");
+    M5.Lcd.println("Connected");
     blinkX(5,50);  
 }
 
@@ -69,7 +71,7 @@ void httpRequest(float field1Data, int field2Data) {
     
     if (!client.connect(server, 80)){
       
-        Serial.println("Connection failed");
+        M5.Lcd.println("Connection failed");
         lastConnectionTime = millis();
         client.stop();
         return;     
@@ -94,7 +96,7 @@ void httpRequest(float field1Data, int field2Data) {
             client.print("\n\n");
             client.print(data);
             
-            Serial.println("RSSI = " + String(field1Data));
+            M5.Lcd.println("RSSI = " + String(field1Data));
             lastConnectionTime = millis();   
             delay(250);
         }

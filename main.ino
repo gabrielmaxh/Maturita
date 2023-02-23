@@ -7,10 +7,10 @@ unsigned long myChannelNumber = 1695691;
 const char * myWriteAPIKey = "TPVT3DDCY3HZJ3HT";
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "LF";
-char pass[] = "hesloksiti";
+char ssid[] = "504F94A0EBD3";
+char pass[] = "5wmb6pp1xy";
 
-const IPAddress remote_ip(192, 168, 0, 98); //hlasny mobil 192.168.0.192 : 192, 168, 1, 3
+const IPAddress remote_ip(192, 168, 1, 3); //hlasny mobil 192.168.0.192 : 192, 168, 1, 3  LF: 192.168.0.98
 
 String serverName ;
 
@@ -57,16 +57,16 @@ lastTime = millis();
       M5.Lcd.println(timerDelay);
 M5.Lcd.println(millis() - lastTime);   
 
-IPAddress ip (192, 168, 0, 98); // The remote ip to ping
+IPAddress ip (192, 168, 1, 3); // The remote ip to ping
     bool ret = Ping.ping(ip);
     
     if (ret) {
       M5.Lcd.println("pritomen");
-      serverName = "https://api.thingspeak.com/update?api_key=TPVT3DDCY3HZJ3HT&field1=1";
+      serverName = "https://api.thingspeak.com/update?api_key=TPVT3DDCY3HZJ3HT&field3=1";
 
      } else {
       M5.Lcd.println("nepritomen");
-      serverName = "https://api.thingspeak.com/update?api_key=TPVT3DDCY3HZJ3HT&field1=0";
+      serverName = "https://api.thingspeak.com/update?api_key=TPVT3DDCY3HZJ3HT&field3=0";
      }
 
   if ((lastTime) > timerDelay) {
